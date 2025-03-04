@@ -10,44 +10,53 @@ struct InputSection: View {
     let errorMessage: String
     let isIPad: Bool
     
+    // Determine if we should use the two-column layout
+    private var useWideLayout: Bool {
+        #if os(macOS)
+        return true
+        #else
+        return isIPad
+        #endif
+    }
+    
     var body: some View {
         VStack(spacing: 20) {
-            if isIPad {
+            if useWideLayout {
                 // iPad Layout - 2 columns
                 HStack(alignment: .top, spacing: 20) {
                     // Left Column
                     VStack(spacing: 20) {
-                        InputField(title: "Account Balance (USD)", text: $accountBalance)
-                        InputField(title: "Risk %", text: $riskPercentage)
-                        InputField(title: "Entry Price", text: $entryPrice)
+                        CustomInputField(title: "Account Balance (USD)", text: $accountBalance)
+                        CustomInputField(title: "Risk %", text: $riskPercentage)
+                        CustomInputField(title: "Entry Price", text: $entryPrice)
                     }
                     
                     // Right Column
                     VStack(spacing: 20) {
-                        InputField(title: "Leverage", text: $leverage)
-                        InputField(title: "Stop Loss", text: $stopLossPrice)
-                        InputField(title: "Take Profit", text: $targetPrice)
+                        CustomInputField(title: "Leverage", text: $leverage)
+                        CustomInputField(title: "Stop Loss", text: $stopLossPrice)
+                        CustomInputField(title: "Take Profit", text: $targetPrice)
                     }
                 }
             } else {
                 // iPhone Layout - Single column with split fields
                 VStack(spacing: 20) {
                     // Account Balance - Full Width
-                    InputField(title: "Account Balance (USD)", text: $accountBalance)
+                    CustomInputField(title: "Account Balance (USD)", text: $accountBalance)
                     
                     // Risk and Leverage
                     HStack(spacing: 15) {
-                        InputField(title: "Risk %", text: $riskPercentage)
-                        InputField(title: "Leverage", text: $leverage)
+                        CustomInputField(title: "Risk %", text: $riskPercentage)
+                        CustomInputField(title: "Leverage", text: $leverage)
                     }
                     
                     // Entry Price - Full Width
-                    InputField(title: "Entry Price", text: $entryPrice)
+                    CustomInputField(title: "Entry Price", text: $entryPrice)
                     
                     // Stop Loss and Take Profit
                     HStack(spacing: 15) {
-                        InputField(title: "Stop Loss", text: $stopLossPrice)
-                        InputField(title: "Take Profit", text: $targetPrice)
+                        CustomInputField(title: "Stop Loss", text: $stopLossPrice)
+                        CustomInputField(title: "Take Profit", text: $targetPrice)
                     }
                 }
             }
@@ -66,7 +75,7 @@ struct InputSection: View {
         }
         .padding()
         .background(Theme.Colors.cardBackground)
-        .cornerRadius(isIPad ? 16 : 10)
+        .cornerRadius(useWideLayout ? 16 : 10)
     }
 }
 

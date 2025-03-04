@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-@main
 struct CryptoSizeApp: App {
     var body: some Scene {
         WindowGroup {

@@ -9,6 +9,15 @@ struct ResultsSection: View {
     let hasTargetPrice: Bool
     let isIPad: Bool
     
+    // Determine if we should use the wide layout
+    private var useWideLayout: Bool {
+        #if os(macOS)
+        return true
+        #else
+        return isIPad
+        #endif
+    }
+    
     var body: some View {
         VStack(spacing: 20) {
             // Position Size Card (Full Width)
@@ -36,9 +45,9 @@ struct ResultsSection: View {
                 }
             }
         }
-        .padding(isIPad ? 24 : 16)
+        .padding(useWideLayout ? 24 : 16)
         .background(Theme.Colors.cardBackground)
-        .cornerRadius(isIPad ? 16 : 14)
+        .cornerRadius(useWideLayout ? 16 : 14)
     }
 }
 
