@@ -8,11 +8,11 @@
 
 /* Begin PBXFileReference section */
 		886EE5EF2D6D13E000BF5D2B /* CryptoSize.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CryptoSize.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		88A0949E2D779A0400B90706 /* CryptoSize Calculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "CryptoSize Calculator.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		88A0949E2D779A0400B90706 /* CryptoSize-macOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "CryptoSize-macOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		88A094AE2D779A4700B90706 /* Exceptions for "CryptoSize" folder in "CryptoSize Calculator" target */ = {
+		88A094AE2D779A4700B90706 /* Exceptions for "CryptoSize" folder in "CryptoSize-macOS" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				App/CryptoSizeMacApp.swift,
@@ -34,7 +34,7 @@
 				Utils/ColorExtension.swift,
 				Utils/PlatformViewModifier.swift,
 			);
-			target = 88A0949D2D779A0400B90706 /* CryptoSize Calculator */;
+			target = 88A0949D2D779A0400B90706 /* CryptoSize-macOS */;
 		};
 		88A094C22D779ABC00B90706 /* Exceptions for "CryptoSize" folder in "CryptoSize" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
@@ -51,7 +51,7 @@
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
 				88A094C22D779ABC00B90706 /* Exceptions for "CryptoSize" folder in "CryptoSize" target */,
-				88A094AE2D779A4700B90706 /* Exceptions for "CryptoSize" folder in "CryptoSize Calculator" target */,
+				88A094AE2D779A4700B90706 /* Exceptions for "CryptoSize" folder in "CryptoSize-macOS" target */,
 			);
 			path = CryptoSize;
 			sourceTree = "<group>";
@@ -94,7 +94,7 @@
 			isa = PBXGroup;
 			children = (
 				886EE5EF2D6D13E000BF5D2B /* CryptoSize.app */,
-				88A0949E2D779A0400B90706 /* CryptoSize Calculator.app */,
+				88A0949E2D779A0400B90706 /* CryptoSize-macOS.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -124,9 +124,9 @@
 			productReference = 886EE5EF2D6D13E000BF5D2B /* CryptoSize.app */;
 			productType = "com.apple.product-type.application";
 		};
-		88A0949D2D779A0400B90706 /* CryptoSize Calculator */ = {
+		88A0949D2D779A0400B90706 /* CryptoSize-macOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 88A094AA2D779A0500B90706 /* Build configuration list for PBXNativeTarget "CryptoSize Calculator" */;
+			buildConfigurationList = 88A094AA2D779A0500B90706 /* Build configuration list for PBXNativeTarget "CryptoSize-macOS" */;
 			buildPhases = (
 				88A0949A2D779A0400B90706 /* Sources */,
 				88A0949B2D779A0400B90706 /* Frameworks */,
@@ -139,11 +139,11 @@
 			fileSystemSynchronizedGroups = (
 				88A0949F2D779A0400B90706 /* CryptoSize-macOS */,
 			);
-			name = "CryptoSize Calculator";
+			name = "CryptoSize-macOS";
 			packageProductDependencies = (
 			);
 			productName = "CryptoSize-macOS";
-			productReference = 88A0949E2D779A0400B90706 /* CryptoSize Calculator.app */;
+			productReference = 88A0949E2D779A0400B90706 /* CryptoSize-macOS.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -179,7 +179,7 @@
 			projectRoot = "";
 			targets = (
 				886EE5EE2D6D13E000BF5D2B /* CryptoSize */,
-				88A0949D2D779A0400B90706 /* CryptoSize Calculator */,
+				88A0949D2D779A0400B90706 /* CryptoSize-macOS */,
 			);
 		};
 /* End PBXProject section */
@@ -362,7 +362,7 @@
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 12.4;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.phyomyanmarkyaw.CryptoSize-macOS";
+				PRODUCT_BUNDLE_IDENTIFIER = com.phyomyanmarkyaw.CryptoSize;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
@@ -402,7 +402,7 @@
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 12.4;
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.phyomyanmarkyaw.CryptoSize-macOS";
+				PRODUCT_BUNDLE_IDENTIFIER = com.phyomyanmarkyaw.CryptoSize;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
@@ -421,14 +421,13 @@
 				CODE_SIGN_ENTITLEMENTS = "CryptoSize-macOS/CryptoSize_macOS.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"CryptoSize-macOS/Preview Content\"";
 				DEVELOPMENT_TEAM = DR2WPVPVRV;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "CryptoSize-macOS/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "CryptoSize Calculator";
+				INFOPLIST_KEY_CFBundleDisplayName = CryptoSize;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -453,14 +452,13 @@
 				CODE_SIGN_ENTITLEMENTS = "CryptoSize-macOS/CryptoSize_macOS.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"CryptoSize-macOS/Preview Content\"";
 				DEVELOPMENT_TEAM = DR2WPVPVRV;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "CryptoSize-macOS/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "CryptoSize Calculator";
+				INFOPLIST_KEY_CFBundleDisplayName = CryptoSize;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -498,7 +496,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		88A094AA2D779A0500B90706 /* Build configuration list for PBXNativeTarget "CryptoSize Calculator" */ = {
+		88A094AA2D779A0500B90706 /* Build configuration list for PBXNativeTarget "CryptoSize-macOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				88A094AB2D779A0500B90706 /* Debug */,
