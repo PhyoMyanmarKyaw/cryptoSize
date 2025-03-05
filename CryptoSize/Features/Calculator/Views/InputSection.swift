@@ -10,7 +10,6 @@ struct InputSection: View {
     let errorMessage: String
     let isIPad: Bool
     
-    // Determine if we should use the two-column layout
     private var useWideLayout: Bool {
         #if os(macOS)
         return true
@@ -22,18 +21,18 @@ struct InputSection: View {
     var body: some View {
         VStack(spacing: 20) {
             if useWideLayout {
-                // iPad Layout - 2 columns
+                // iPad/macOS Layout - 2 columns
                 HStack(alignment: .top, spacing: 20) {
                     // Left Column
                     VStack(spacing: 20) {
                         CustomInputField(title: "Account Balance (USD)", text: $accountBalance)
-                        CustomInputField(title: "Risk %", text: $riskPercentage)
+                        CustomInputField(title: "Leverage", text: $leverage)
                         CustomInputField(title: "Entry Price", text: $entryPrice)
                     }
                     
                     // Right Column
                     VStack(spacing: 20) {
-                        CustomInputField(title: "Leverage", text: $leverage)
+                        CustomInputField(title: "Risk %", text: $riskPercentage)
                         CustomInputField(title: "Stop Loss", text: $stopLossPrice)
                         CustomInputField(title: "Take Profit", text: $targetPrice)
                     }

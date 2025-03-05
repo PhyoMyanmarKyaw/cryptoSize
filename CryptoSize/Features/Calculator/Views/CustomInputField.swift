@@ -20,7 +20,7 @@ struct CustomInputField: View {
                 .textInputAutocapitalization(.never)
                 .autocorrectionDisabled(true)
                 #else
-                // macOS specific styling
+                // macOS specific style
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .controlSize(.large)
                 #endif

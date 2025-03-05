@@ -1,3 +1,10 @@
+//
+//  AppEntry.swift
+//  CryptoSize
+//
+//  Created by Phyo Myanmar Kyaw on 2/25/25.
+//
+
 import SwiftUI
 
 @main

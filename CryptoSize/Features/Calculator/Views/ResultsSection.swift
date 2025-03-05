@@ -9,7 +9,6 @@ struct ResultsSection: View {
     let hasTargetPrice: Bool
     let isIPad: Bool
     
-    // Determine if we should use the wide layout
     private var useWideLayout: Bool {
         #if os(macOS)
         return true

@@ -27,4 +27,4 @@ A personal crypto trade calculator app built with SwiftUI, supporting iOS, iPadO
 
 ## License
 
-This project is open source and available under the [MIT License].
+This project is open source and available under the [MIT License](https://github.com/PhyoMyanmarKyaw/cryptoSize?tab=MIT-1-ov-file).

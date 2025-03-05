@@ -1,7 +1,6 @@
 import SwiftUI
 
 struct ResultCard: View {
-    // Add import at the top level
     typealias AccentType = Theme.Colors.Accents.AccentType
     let icon: String
     let iconColor: Color

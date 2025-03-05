@@ -8,38 +8,20 @@
 import SwiftUI
 import AppKit
 
-// Create a custom scene delegate to handle window configuration
-class SceneDelegate: NSObject, NSWindowDelegate {
-    func windowDidBecomeMain(_ notification: Notification) {
-        guard let window = notification.object as? NSWindow else { return }
-        window.styleMask.remove(.resizable)
-        window.setContentSize(NSSize(width: 800, height: 600))
-        window.center()
-    }
-    
-    func windowWillResize(_ window: NSWindow, to frameSize: NSSize) -> NSSize {
-        return NSSize(width: 800, height: 600)
-    }
-}
+// MARK: - App Entry Point
 
 @main
 struct CryptoSize_macOSApp: App {
-    // Use a StateObject to keep the delegate alive for the app's lifetime
-    @StateObject private var delegateKeeper = DelegateKeeper()
+    @StateObject private var windowManager = WindowManager()
     
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .frame(width: 800, height: 600)
+                .frame(width: Constants.windowWidth, height: Constants.windowHeight)
                 .fixedSize()
                 .onAppear {
                     DispatchQueue.main.async {
-                        // Configure windows after a short delay to ensure they're created
-                        for window in NSApplication.shared.windows {
-                            window.delegate = delegateKeeper.sceneDelegate
-                            window.styleMask.remove(.resizable)
-                            window.setContentSize(NSSize(width: 800, height: 600))
-                        }
+                        windowManager.configureAllWindows()
                     }
                 }
         }
@@ -48,28 +30,74 @@ struct CryptoSize_macOSApp: App {
     }
 }
 
-// Helper class to keep the delegate alive
-class DelegateKeeper: ObservableObject {
-    let sceneDelegate = SceneDelegate()
+// MARK: - Window Management
+
+/// Manages window configuration for the macOS app
+final class WindowManager: ObservableObject {
+    private let windowDelegate = MacWindowDelegate()
+    private let notificationCenter = NotificationCenter.default
     
     init() {
-        // Add notification observer for new windows
-        NotificationCenter.default.addObserver(
+        setupWindowNotifications()
+    }
+    
+    deinit {
+        notificationCenter.removeObserver(self)
+    }
+    
+    /// Configures all currently open windows
+    func configureAllWindows() {
+        NSApplication.shared.windows.forEach(configureWindow)
+    }
+    
+    /// Configures a single window with fixed size and non-resizable properties
+    private func configureWindow(_ window: NSWindow) {
+        window.delegate = windowDelegate
+        window.styleMask.remove(.resizable)
+        window.setContentSize(NSSize(width: Constants.windowWidth, height: Constants.windowHeight))
+        window.center()
+    }
+    
+    /// Sets up notification observers for window events
+    private func setupWindowNotifications() {
+        notificationCenter.addObserver(
             forName: NSWindow.didBecomeKeyNotification,
             object: nil,
             queue: .main
         ) { [weak self] notification in
-            guard let self = self, let window = notification.object as? NSWindow else { return }
+            guard let self = self,
+                  let window = notification.object as? NSWindow,
+                  window.delegate == nil else { return }
             
-            // Set delegate and make window non-resizable
-            window.delegate = self.sceneDelegate
-            window.styleMask.remove(.resizable)
-            window.setContentSize(NSSize(width: 800, height: 600))
-            window.center()
+            self.configureWindow(window)
         }
     }
-    
-    deinit {
-        NotificationCenter.default.removeObserver(self)
+}
+
+// MARK: - Window Delegate
+
+/// Delegate that handles window-specific behaviors
+final class MacWindowDelegate: NSObject, NSWindowDelegate {
+    func windowDidBecomeMain(_ notification: Notification) {
+        guard let window = notification.object as? NSWindow else { return }
+        configureWindow(window)
     }
+    
+    func windowWillResize(_ window: NSWindow, to frameSize: NSSize) -> NSSize {
+        return NSSize(width: Constants.windowWidth, height: Constants.windowHeight)
+    }
+    
+    private func configureWindow(_ window: NSWindow) {
+        window.styleMask.remove(.resizable)
+        window.setContentSize(NSSize(width: Constants.windowWidth, height: Constants.windowHeight))
+        window.center()
+    }
+}
+
+// MARK: - Constants
+
+/// App-wide constants
+private enum Constants {
+    static let windowWidth: CGFloat = 800
+    static let windowHeight: CGFloat = 600
 }

@@ -29,7 +29,6 @@ final class CalculatorViewModel: ObservableObject {
         didSet { checkUserInput() }
     }
     
-    // Track if user has started input and if we have all required fields
     @Published var hasUserInput: Bool = false
     @Published var hasRequiredFields: Bool = false
     
@@ -111,7 +110,7 @@ final class CalculatorViewModel: ObservableObject {
         // Risk Amount
         riskAmount = format(number: trade.riskAmount, prefix: "$")
         
-        // Risk/Reward ratio (if target price is set)
+        // Risk/Reward ratio - if set
         if let ratio = trade.riskRewardRatio {
             if ratio.truncatingRemainder(dividingBy: 1) == 0 {
                 riskRewardRatio = "1:" + String(format: "%.0f", ratio)
